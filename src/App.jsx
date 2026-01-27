@@ -58,7 +58,7 @@ function App() {
       {/* Toolbox Section */}
       <section className="toolbox-section">
         <h2>Toolbox</h2>
-        <p className="toolbox-description">Tool-agnostic implementation including Zendesk, Shopify, Amazon API, Python, and more.</p>
+        <p className="toolbox-description">Tool agnostic implementation including Zendesk, Shopify, Amazon API, Python, and more.</p>
       </section>
 
       {/* Call to Action Section */}
