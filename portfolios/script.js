@@ -24,47 +24,55 @@ const updateDots = (currentDot, targetDot) => {
     targetDot.classList.add('current-slide');
 };
 
-nextButton.addEventListener('click', e => {
-    const currentSlide = track.querySelector('.current-slide');
-    const nextSlide = currentSlide.nextElementSibling || slides[0];
-    const currentDot = dotsNav.querySelector('.current-slide');
-    const nextDot = currentDot.nextElementSibling || dots[0];
+if(nextButton) {
+    nextButton.addEventListener('click', e => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling || slides[0];
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const nextDot = currentDot.nextElementSibling || dots[0];
 
-    moveToSlide(track, currentSlide, nextSlide);
-    updateDots(currentDot, nextDot);
-});
+        moveToSlide(track, currentSlide, nextSlide);
+        updateDots(currentDot, nextDot);
+    });
+}
 
-prevButton.addEventListener('click', e => {
-    const currentSlide = track.querySelector('.current-slide');
-    const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
-    const currentDot = dotsNav.querySelector('.current-slide');
-    const prevDot = currentDot.previousElementSibling || dots[dots.length - 1];
+if(prevButton) {
+    prevButton.addEventListener('click', e => {
+        const currentSlide = track.querySelector('.current-slide');
+        const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const prevDot = currentDot.previousElementSibling || dots[dots.length - 1];
 
-    moveToSlide(track, currentSlide, prevSlide);
-    updateDots(currentDot, prevDot);
-});
+        moveToSlide(track, currentSlide, prevSlide);
+        updateDots(currentDot, prevDot);
+    });
+}
 
-dotsNav.addEventListener('click', e => {
-    const targetDot = e.target.closest('button');
-    if (!targetDot) return;
+if(dotsNav) {
+    dotsNav.addEventListener('click', e => {
+        const targetDot = e.target.closest('button');
+        if (!targetDot) return;
 
-    const currentSlide = track.querySelector('.current-slide');
-    const currentDot = dotsNav.querySelector('.current-slide');
-    const targetIndex = dots.findIndex(dot => dot === targetDot);
-    const targetSlide = slides[targetIndex];
+        const currentSlide = track.querySelector('.current-slide');
+        const currentDot = dotsNav.querySelector('.current-slide');
+        const targetIndex = dots.findIndex(dot => dot === targetDot);
+        const targetSlide = slides[targetIndex];
 
-    moveToSlide(track, currentSlide, targetSlide);
-    updateDots(currentDot, targetDot);
-});
+        moveToSlide(track, currentSlide, targetSlide);
+        updateDots(currentDot, targetDot);
+    });
+}
 
 // Modal Logic
 function openModal(id) {
-    document.getElementById(id).style.display = 'flex';
+    const modal = document.getElementById(id);
+    modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
+    const modal = document.getElementById(id);
+    modal.style.display = 'none';
     document.body.style.overflow = 'auto';
 }
 
@@ -74,13 +82,3 @@ window.onclick = function(event) {
         document.body.style.overflow = 'auto';
     }
 }
-
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const htmlElement = document.documentElement;
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = htmlElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    htmlElement.setAttribute('data-theme', newTheme);
-});
