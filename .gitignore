@@ -1,0 +1,8 @@
+# Ignore all files by default
+/*
+
+# Allow specific files/directories
+!/.gitignore
+!/README.md
+!/portfolios-v2/
+!/projImage/
