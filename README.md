@@ -1,4 +1,4 @@
-# Karl Gonzales | Automation Engineer Portfolio V2
+# Karl Gonzales | Automation Engineer
 
 A high-performance, industrial-themed portfolio designed for a Top Talent Acquisition audience. This project showcases complex automated workflows, RAG-based AI integrations, and cross-platform synchronization systems.
 
