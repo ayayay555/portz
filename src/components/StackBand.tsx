@@ -1,30 +1,24 @@
 const GROUPS = [
-  { title: 'Automation', items: ['Python', 'n8n', 'Make', 'JavaScript', 'Cron'] },
-  { title: 'AI / LLM', items: ['RAG', 'Gemini', 'Claude', 'Pinecone', 'Agents'] },
+  { title: 'Automation', items: ['n8n', 'Make', 'Python', 'JavaScript', 'Cron'] },
+  { title: 'AI', items: ['Claude', 'Gemini', 'RAG', 'Pinecone', 'Agents'] },
   { title: 'Data', items: ['PostgreSQL', 'REST APIs', 'Graph API', 'Webhooks', 'ETL'] },
-  { title: 'Platforms', items: ['Shopify', 'Zendesk', 'Pipedrive', 'Custom APIs'] },
+  { title: 'Platforms', items: ['Amazon', 'Shopify', 'Zendesk', 'Pipedrive', 'Monday.com'] },
 ];
 
 export default function StackBand() {
   return (
-    <section className="section section-border">
-      <div className="container">
-        <div className="section-header">
-          <div className="label">Stack</div>
-          <h2>Tools that <span className="dim">earn their keep.</span></h2>
-        </div>
+    <section id="stack">
+      <div className="wrap">
+        <span className="kicker">05 / 06 &middot; Stack</span>
+        <h2>What I build with.</h2>
 
-        <div className="stack-row">
+        <div className="stack">
           {GROUPS.map(g => (
-            <div key={g.title} className="stack-group">
-              <div className="group-label">{g.title}</div>
-              <div className="group-items">
-                {g.items.map((item, i) => (
-                  <span key={item}>
-                    {item}{i < g.items.length - 1 && <span className="sep">/</span>}
-                  </span>
-                ))}
-              </div>
+            <div key={g.title}>
+              <span className="label">{g.title}</span>
+              <ul>
+                {g.items.map(item => <li key={item}>{item}</li>)}
+              </ul>
             </div>
           ))}
         </div>

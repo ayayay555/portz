@@ -1,77 +1,62 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
 import Hero from './components/Hero';
-import Proof from './components/Proof';
-import Archive from './components/Archive';
+import Shift from './components/Shift';
+import Systems from './components/Systems';
+import Trust from './components/Trust';
 import Method from './components/Method';
 import StackBand from './components/StackBand';
 import Close from './components/Close';
 import AboutModal from './components/AboutModal';
+import ThemeToggle from './components/ThemeToggle';
 
 const NAV = [
-  { href: '#proof', label: 'Work' },
+  { href: '#systems', label: 'Systems' },
+  { href: '#trust', label: 'How I work' },
   { href: '#method', label: 'Method' },
-  { href: '#archive', label: 'Archive' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 const YEAR = String(new Date().getFullYear());
 
 function App() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [isNavOpen, setIsNavOpen] = useState(false);
-
-  const closeNav = () => setIsNavOpen(false);
 
   return (
     <>
-      <header className="masthead">
-        <div className="container">
-          <div className="masthead-inner">
-            <a href="#hero" className="masthead-logo" onClick={closeNav}>
-              Karl Gonzales<span className="dot">.</span>
-            </a>
-
-            <button
-              className={`hamburger${isNavOpen ? ' is-open' : ''}`}
-              onClick={() => setIsNavOpen(v => !v)}
-              aria-label="Toggle menu"
-            >
-              {isNavOpen ? <X size={16} /> : <Menu size={16} />}
-            </button>
-
-            <nav className={`masthead-nav${isNavOpen ? ' open' : ''}`}>
-              {NAV.map(n => (
-                <a key={n.href} href={n.href} onClick={closeNav}>{n.label}</a>
-              ))}
-              <a href="#contact" className="nav-cta" onClick={closeNav}>
-                Book a call
-              </a>
-            </nav>
-          </div>
+      <header className="header">
+        <div className="wrap">
+          <a href="#" className="brand">
+            <svg viewBox="0 0 32 32" fill="none" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+              <path d="M5 16h7c3 0 3-7 7-7h6M12 16c3 0 3 7 7 7h6" stroke="var(--text)" />
+              <circle cx="26" cy="23" r="3" fill="var(--green)" />
+            </svg>
+            Karl Gonzales
+          </a>
+          <nav className="nav">
+            {NAV.map(n => (
+              <a key={n.href} href={n.href}>{n.label}</a>
+            ))}
+            <ThemeToggle />
+          </nav>
         </div>
       </header>
 
       <main>
         <Hero />
-        <Proof />
-        <Archive />
+        <Shift />
+        <Systems />
+        <Trust />
         <Method />
         <StackBand />
         <Close onAbout={() => setIsAboutOpen(true)} />
-
-        <footer className="footer">
-          <div className="container">
-            <div className="footer-inner">
-              <div className="footer-logo">
-                Karl Gonzales<span className="dot">.</span>
-              </div>
-              <div className="footer-copy">
-                &copy; {YEAR} Karl Gonzales &middot; Automation Engineer &middot; Manila
-              </div>
-            </div>
-          </div>
-        </footer>
       </main>
+
+      <footer className="footer">
+        <div className="wrap">
+          <span>&copy; {YEAR} Karl Gonzales</span>
+          <span>AI Automation Engineer &middot; Manila</span>
+        </div>
+      </footer>
 
       <AboutModal isOpen={isAboutOpen} onClose={() => setIsAboutOpen(false)} />
     </>
