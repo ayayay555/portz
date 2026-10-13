@@ -1,111 +1,60 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Terminal, Database } from 'lucide-react';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP);
+
+const STATS = [
+  { val: '160 hrs', label: 'Reclaimed / mo' },
+  { val: '$30K', label: 'Recovered' },
+  { val: '60%', label: 'Support automated' },
+  { val: '0', label: 'Missed SLAs' },
+];
 
 export default function Hero() {
-  const [text, setText] = useState('');
-  const fullText = '> Automating Complexity into Efficiency_';
+  const ref = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    let i = 0;
-    const timer = setInterval(() => {
-      setText(fullText.slice(0, i));
-      i++;
-      if (i > fullText.length) clearInterval(timer);
-    }, 50);
-    return () => clearInterval(timer);
-  }, []);
+  useGSAP(() => {
+    gsap.from('.hero > .container > *', {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+    });
+  }, { scope: ref });
 
   return (
-    <section id="hero" style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      alignItems: 'center',
-      paddingTop: '80px',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
-      {/* Decorative background grid element */}
-      <div style={{
-        position: 'absolute',
-        top: '20%',
-        right: '-10%',
-        width: '50vw',
-        height: '50vw',
-        background: 'radial-gradient(circle, var(--accent-muted) 0%, transparent 70%)',
-        opacity: 0.5,
-        filter: 'blur(60px)',
-        zIndex: -1,
-      }}></div>
+    <section id="hero" className="hero" ref={ref}>
+      <div className="container">
+        <div className="hero-badge">
+          <span className="dot" />
+          Available for new projects
+        </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ maxWidth: '800px' }}>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="mono" 
-            style={{ 
-              color: 'var(--accent)', 
-              marginBottom: '2rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              background: 'var(--bg-secondary)',
-              padding: '0.5rem 1rem',
-              border: '1px solid var(--border)',
-              borderRadius: '4px'
-            }}
-          >
-            <Terminal size={16} />
-            <span>Available for new projects</span>
-          </motion.div>
-          
-          <h1 style={{ 
-            fontSize: 'clamp(3rem, 6vw, 5rem)', 
-            lineHeight: 1.1, 
-            marginBottom: '2rem',
-            letterSpacing: '-0.04em'
-          }}>
-            {text}
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ repeat: Infinity, duration: 0.8 }}
-              style={{ display: 'inline-block', width: '20px', height: '1em', background: 'var(--accent)', verticalAlign: 'text-bottom', marginLeft: '8px' }}
-            />
-          </h1>
+        <h1>
+          I build systems that <span className="dim">do the boring work.</span>
+        </h1>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            style={{ 
-              fontSize: '1.25rem', 
-              color: 'var(--text-secondary)',
-              marginBottom: '3rem',
-              maxWidth: '600px',
-              borderLeft: '2px dashed var(--border)',
-              paddingLeft: '1.5rem',
-              marginLeft: '0.5rem'
-            }}
-          >
-            High-impact Automation Engineer specializing in RAG-based AI, CRM integrations, and cross-platform synchronization. Building systems that scale, without the friction.
-          </motion.p>
+        <p className="hero-sub">
+          Automation engineer. I design and build pipelines, integrations, and
+          internal tools that replace manual processes&mdash;so teams can
+          focus on work that actually needs them. One build gave a company
+          back <strong>160 hours a month</strong>.
+        </p>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
-            style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}
-          >
-            <a href="#projects" className="btn">
-              <Database size={18} />
-              View Projects
-            </a>
-            <a href="#contact" className="btn btn-secondary" style={{ borderStyle: 'dashed' }}>
-              Contact Me
-            </a>
-          </motion.div>
+        <div className="hero-actions">
+          <a href="#contact" className="btn">Book a 15-min Diagnosis</a>
+          <a href="#proof" className="btn btn-ghost">See the Work</a>
+        </div>
+
+        <div className="hero-stats">
+          {STATS.map(s => (
+            <div key={s.label} className="hero-stat-item">
+              <div className="val">{s.val}</div>
+              <div className="label">{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
