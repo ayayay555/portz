@@ -1,62 +1,57 @@
-# Karl Gonzales | Automation Engineer Portfolio V2
+# Karl Gonzales | AI Automation Engineer
 
-A high-performance, industrial-themed portfolio designed for a Top Talent Acquisition audience. This project showcases complex automated workflows, RAG-based AI integrations, and cross-platform synchronization systems.
+Portfolio site for my automation work: 100+ automations and 13 systems across law, e-commerce, plumbing, HVAC and web agencies.
 
-## 🚀 Live Demo
-[Check it out on Vercel](https://karlauto.vercel.app/)
+**Live:** [karlauto.vercel.app](https://karlauto.vercel.app/)
 
-## 🛠️ Technical Stack
+Most of the work is under NDA, so the site shows what each system does and how it runs, not client names, data or screens.
 
-- **Framework**: [React 18](https://reactjs.org/) (TypeScript)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Styling**: Vanilla CSS (Custom Utility Grid System)
-- **Deployment**: [Vercel](https://vercel.com/)
+## What's on the page
 
-## 🎨 Design Philosophy: "Industrial / High-Tech Utilitarian"
+- **Hero:** headline numbers and a mock run console. The console is illustrative and holds no client data.
+- **What automation changes:** a dot-matrix comparison of manual work, automated work and the exceptions that still reach a person.
+- **Systems:** one card per system with its own SVG mark. Click a card to flip it and see the high-level flow, which lights up step by step.
+- **How I work, Method, Stack, Contact.**
+- **Light and dark mode:** follows the system setting, with a toggle in the nav that remembers your choice.
 
-The UI is engineered to reflect the precision and technical depth of an Automation Engineer.
-- **Typography**: `JetBrains Mono` for data and logic, `Inter` for clarity.
-- **Aesthetic**: Stark dark mode with **Tech Blue** (`#38bdf8`) accents.
-- **Interactions**: 
-  - Custom project carousel with smooth Framer Motion transitions.
-  - Interactive "Core Logic" modals displaying raw code snippets.
-  - Image lightbox for visual payload inspection.
-  - Offline "About" gallery exploring hobbies beyond the terminal.
+## Stack
 
-## ⚙️ Project Structure
+- React 19 and TypeScript, built with Vite
+- Plain CSS. Every colour is a token in `src/index.css` with a dark and a light value.
+- Framer Motion for the About dialog
+- Deployed on Vercel
 
-```bash
+## Project structure
+
+```
 src/
-├── components/
-│   ├── Hero.tsx          # Dynamic terminal-style entrance
-│   ├── Projects.tsx      # Carousel & Lightbox logic
-│   ├── Process.tsx       # Standard Operating Procedure grid
-│   ├── Skills.tsx        # Loaded system modules
-│   └── AboutGallery.tsx  # Offline user profile
-├── App.tsx               # Main orchestration layer
-└── index.css             # Global utility styles & variables
+├── App.tsx               # Page layout, nav and footer
+├── index.css             # Colour tokens and all styles
+├── lib/rand.ts           # Seeded random for the dot drawings
+└── components/
+    ├── Hero.tsx          # Headline, numbers, dot field, run console
+    ├── Console.tsx       # The tilted run console in the hero
+    ├── DotField.tsx      # Wave of dots behind the hero
+    ├── Shift.tsx         # Manual / automated / exceptions matrix
+    ├── Systems.tsx       # System cards, flip and flows
+    ├── Marks.tsx         # One SVG mark per system
+    ├── Trust.tsx         # How the work can be checked privately
+    ├── Method.tsx
+    ├── StackBand.tsx
+    ├── Close.tsx         # Contact
+    ├── AboutModal.tsx
+    └── ThemeToggle.tsx
 ```
 
-## 💻 Development
+To add or change a system, edit the `SYSTEMS` list in `src/components/Systems.tsx`. To give it a new mark, add one to `src/components/Marks.tsx`.
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/ayayay555/karl-portfolio-v2.git
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run dev server:
-   ```bash
-   npm run dev
-   ```
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+## Run it locally
 
----
-Developed w/ Gemini CLI | Engineered for High-Impact Results.
+```bash
+git clone https://github.com/ayayay555/portz.git
+cd portz
+npm install
+npm run dev
+```
+
+Build for production with `npm run build`. Check the code with `npm run lint`.
